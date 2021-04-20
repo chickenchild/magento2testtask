@@ -1,0 +1,31 @@
+<?php
+/** @var \Magento\Customer\Block\Account\Dashboard $block */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+?>
+<?php $customerStatus = $block->getCustomer()->getCustomAttribute('status')->getValue(); ?>
+<form class="form form-edit-account-status"
+      action="<?= $block->escapeUrl($block->getUrl('custom_customer/status/editPost')) ?>"
+      method="post" id="form-validate-account-status"
+      enctype="multipart/form-data"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset info">
+        <?= $block->getBlockHtml('formkey') ?>
+        <legend class="legend"><span><?= $block->escapeHtml(__('Account Status')) ?></span></legend><br>
+        <div class="field field-status">
+            <label class="label" for="status"><span><?= $block->escapeHtml(__('Status')) ?></span></label>
+            <div class="control">
+                <input type="text" name="status" id="status"
+                       value="<?= $block->escapeHtmlAttr($customerStatus) ?>"
+                       title="<?= $block->escapeHtmlAttr(__('Status')) ?>"
+                       class="input-text" />
+            </div>
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" class="action save primary" title="<?= $block->escapeHtmlAttr(__('Save')) ?>">
+                    <span><?= $block->escapeHtml(__('Save')) ?></span>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>
